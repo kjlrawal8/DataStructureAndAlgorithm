@@ -1,0 +1,9 @@
+public static void towerOfBrahma(int n, char src, char help, char dest){
+        if(n == 1) {
+            System.out.println("Move plate 1 from " + src + " to " + dest);
+            return;
+        }
+        towerOfBrahma(n-1, src, dest, help);
+        System.out.println("Move plate " + n + " from " + src + " to " + dest);
+        towerOfBrahma(n-1, help, src, dest);
+    }
