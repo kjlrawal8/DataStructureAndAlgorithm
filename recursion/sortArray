@@ -1,0 +1,10 @@
+public static List<Integer> sortArray(List<Integer> nums) {
+        int size = nums.size();
+        if(size == 1)
+            return nums;
+        int temp = nums.get(size-1);
+        nums.remove(size-1);
+        sortArray(nums);
+        insert(nums, temp);
+        return nums;
+    }
