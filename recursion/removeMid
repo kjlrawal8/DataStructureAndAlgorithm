@@ -1,0 +1,15 @@
+private static Stack<Integer> removeMid(Stack<Integer> stack){
+        int mid = (stack.size()/2) + 1;
+        return solve(stack, mid);
+    }
+
+    private static Stack<Integer> solve(Stack<Integer> stack, int mid) {
+        if (mid == 1){
+            stack.pop();
+            return stack;
+        }
+        int temp = stack.pop();
+        solve(stack, mid -1);
+        stack.push(temp);
+        return stack;
+    }
