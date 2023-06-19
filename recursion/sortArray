@@ -8,3 +8,15 @@ public static List<Integer> sortArray(List<Integer> nums) {
         insert(nums, temp);
         return nums;
     }
+private static List<Integer> insert(List<Integer> nums, int temp) {
+        int size = nums.size();
+        if(size == 0 || nums.get(size-1) <= temp) {
+            nums.add(temp);
+            return nums;
+        }
+        int last = nums.get(size-1);
+        nums.remove(size-1);
+        insert(nums, temp);
+        insert(nums, last);
+        return nums;
+    }
