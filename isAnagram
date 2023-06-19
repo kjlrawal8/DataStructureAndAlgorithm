@@ -1,0 +1,17 @@
+public static boolean isAnagram(String s, String t) {
+        if(t.length() != s.length())
+            return false;
+        HashMap<Character, Integer> res = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            char k = s.charAt(i);
+            res.put(k,res.getOrDefault(k,0)+1);
+        }
+        for (int i = 0; i < t.length(); i++) {
+            char k = t.charAt(i);
+            if(!res.containsKey(k) || res.get(k) == 0)
+                return false;
+            else
+                res.put(k,res.get(k) - 1);
+        }
+        return true;
+    }
