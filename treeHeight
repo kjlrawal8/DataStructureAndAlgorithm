@@ -1,0 +1,7 @@
+public int maxDepth(TreeNode root) {
+        if(root == null)
+            return 0;
+        int left = maxDepth(root.getChildAt(0));
+        int right = maxDepth(root.getChildAt(1));
+        return Math.max(left,right)+1;
+    }
