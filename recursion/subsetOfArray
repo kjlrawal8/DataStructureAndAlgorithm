@@ -1,0 +1,15 @@
+public List<List<Integer>> subsets(int[] nums) {
+        findSets(nums,new ArrayList<Integer>(),0);
+        return result;
+    }
+    public void findSets(int[] nums, List<Integer> out, int s) {
+        if(s == nums.length){
+            result.add(new ArrayList<>(out));
+            return;
+        }
+        List<Integer> out1 = new ArrayList<>(out);
+        List<Integer> out2 = new ArrayList<>(out);
+        out2.add(nums[s]);
+        findSets(nums, out1, s+1);
+        findSets(nums, out2, s+1);
+    }
