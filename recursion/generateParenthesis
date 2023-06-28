@@ -1,0 +1,22 @@
+public static List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+        return genParen(n, n, res, "");
+    }
+
+    private static List<String> genParen(int open, int close, List<String> res, String out) {
+        if(open == 0 && close == 0) {
+            res.add(out);
+            return res;
+        }
+        if(close > open) {
+            String out2 = out;
+            out2 = out2.concat(")");
+            res = genParen(open, close-1, res, out2);
+        }
+        if(open > 0){
+            String out1 = out;
+            out1 = out1.concat("(");
+            res = genParen(open-1, close, res, out1);
+        }
+        return res;
+    }
