@@ -1,0 +1,22 @@
+public static ArrayList<String> powerSet(String s)
+    {
+        ArrayList<String> res = new ArrayList<>();
+        solve(s, res, "");
+        Collections.sort(res);
+        return res;
+    }
+
+    private static void solve(String s, ArrayList<String> res, String op) {
+        if(s.length() == 0) {
+            res.add(op);
+            return;
+        }
+        String op2 = op + s.charAt(0);
+        if(s.length() == 1)
+            s = "";
+        else
+            s = s.substring(1);
+
+        solve(s, res, op);
+        solve(s, res, op2);
+    }
