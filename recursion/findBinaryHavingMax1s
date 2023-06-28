@@ -1,0 +1,18 @@
+public static List<String> findBinaryHavingMax1s(int n){
+        List<String> res = new ArrayList<>();
+        return findMax1s(n, 0, 0, res, "");
+    }
+
+    private static List<String> findMax1s(int n, int zero, int one, List<String> res, String out) {
+        if(n == 0){
+            res.add(out);
+            return res;
+        }
+        String out2 = out.concat("1");
+        res = findMax1s(n-1, zero, one + 1, res, out2);
+        if(one > zero){
+            String out1 = out.concat("0");
+            res = findMax1s(n-1, zero + 1, one, res, out1);
+        }
+        return res;
+    }
