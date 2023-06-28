@@ -1,0 +1,14 @@
+    public static boolean isPalindrome(int x) {
+        if(x == 0)
+            return false;
+        int rev = palindrome(x, 0);
+        return rev == x;
+
+    }
+
+    private static int palindrome(int n, int res) {
+        if(n == 0)
+            return res;
+        res = res * 10 + (n % 10);
+        return palindrome(n/10, res);
+    }
