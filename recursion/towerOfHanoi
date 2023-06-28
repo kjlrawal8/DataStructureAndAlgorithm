@@ -7,3 +7,21 @@ public static void towerOfBrahma(int n, char src, char help, char dest){
         System.out.println("Move plate " + n + " from " + src + " to " + dest);
         towerOfBrahma(n-1, help, src, dest);
     }
+public static long toh(int N, int from, int to, int aux) {
+        long count = 0;
+        towerOfBrahma(N, from, to, aux, count);
+        return count;
+    }
+
+    private static long towerOfBrahma(int N, int from, int to, int aux, long count) {
+        if(N == 1) {
+            System.out.println("move disk 1 from " + from + " to " + to);
+            count = count + 1;
+            return count;
+        }
+        count = towerOfBrahma(N-1, from, aux, to, count);
+        System.out.println("move disk " + N + " from " + from + " to " + to);
+        count = count + 1;
+        count = towerOfBrahma(N-1, aux, to, from, count);
+        return count;
+    }
