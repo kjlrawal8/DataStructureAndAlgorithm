@@ -35,6 +35,22 @@ private static int recursiveMinCut(String s, int i, int j) {
         return ans;
     }
 
+private static int memoizedMinCut(String s, int i, int j) {
+        if (i >= j)
+            return 0;
+        if(isPalindrome(s,i,j))
+            return 0;
+        if(mcmDpMatrix[i][j] != -1)
+            return mcmDpMatrix[i][j];
+        mcmDpMatrix[i][j] = Integer.MAX_VALUE;
+        int temp;
+        for (int k = i; k < j; k++) {
+            temp = memoizedMinCut(s, i, k) + memoizedMinCut(s, k+1, j) + 1;
+            mcmDpMatrix[i][j] = Math.min(temp, mcmDpMatrix[i][j]);
+        }
+        return mcmDpMatrix[i][j];
+    }
+
 boolean isPalindrome(String string, int i, int j) {
         while (i < j) {
             if (string.charAt(i) != string.charAt(j))
