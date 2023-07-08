@@ -51,6 +51,32 @@ private static int memoizedMinCut(String s, int i, int j) {
         return mcmDpMatrix[i][j];
     }
 
+private static int optimizedMemoizationMinCut(String s, int i, int j) {
+        if (i >= j)
+            return 0;
+        if(isPalindrome(s,i,j))
+            return 0;
+        if(mcmDpMatrix[i][j] != -1)
+            return mcmDpMatrix[i][j];
+        mcmDpMatrix[i][j] = Integer.MAX_VALUE;
+        int temp, left, right;
+        for (int k = i; k < j; k++) {
+            if(mcmDpMatrix[i][k] != -1)
+                left = mcmDpMatrix[i][k];
+            else
+                left = optimizedMemoizationMinCut(s, i, k);
+
+            if(mcmDpMatrix[k+1][j] != -1)
+                right = mcmDpMatrix[k+1][j];
+            else
+                right = optimizedMemoizationMinCut(s, k+1, j);
+
+            temp = left + right + 1;
+            mcmDpMatrix[i][j] = Math.min(temp, mcmDpMatrix[i][j]);
+        }
+        return mcmDpMatrix[i][j];
+    }
+
 boolean isPalindrome(String string, int i, int j) {
         while (i < j) {
             if (string.charAt(i) != string.charAt(j))
