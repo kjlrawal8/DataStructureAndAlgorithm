@@ -21,6 +21,20 @@ public int minCut(String s) {
         }
         return mcmDpMatrix[i][j];
     }
+
+private static int recursiveMinCut(String s, int i, int j) {
+        if (i >= j)
+            return 0;
+        if(isPalindrome(s,i,j))
+            return 0;
+        int ans = Integer.MAX_VALUE, temp;
+        for (int k = i; k < j; k++) {
+            temp = recursiveMinCut(s, i, k) + recursiveMinCut(s, k+1, j) + 1;
+            ans = Math.min(temp, ans);
+        }
+        return ans;
+    }
+
 boolean isPalindrome(String string, int i, int j) {
         while (i < j) {
             if (string.charAt(i) != string.charAt(j))
