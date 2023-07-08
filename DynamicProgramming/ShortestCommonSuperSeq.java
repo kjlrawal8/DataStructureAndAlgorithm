@@ -40,4 +40,7 @@ private static String getSuperSeq(String str1, String str2, int m, int n, int[][
             res.append(str2.charAt(j-1));
             j--;
         }
+        return res.reverse().toString();
+    }
+
        
